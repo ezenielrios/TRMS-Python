@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- header -->
+    <div>
+        <h1>TRMS</h1>
+    </div>
+
+    <div>
+        <img id="logo" class="center" src="../img/" width="779" title="logo" alt="Server room">
+    </div>
+
+
+    <!--
+            log in form
+            template from https://bootsnipp.com/snippets/rl98z
+        -->
+    <div class="simple-login-container mt" id="formContainer">
+        <h2>Login</h2>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="userId"></label><input type="text" class="form-control" placeholder="Username" id="userId">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="userPw"></label><input type="password" placeholder="Enter your Password" class="form-control" id="userPw">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="Submit" class="btn btn-block btn-login" onclick="login()" id="submitBtn">
+            </div>
+        </div>
+    </div>
+
+     <script>
+        function login() {
+            var user = document.getElementById("userId").value;
+            var pass = document.getElementById("userPw").value;
+
+            console.log(user, pass)
+
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+
+          xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            if (xhr.status === 200) {
+              document.cookie = "id=" + xhr.response['id'] + ";";
+              console.log(xhr.response['id'])
+              console.log(document.cookie)
+              console.log(xhr.response['id'])
+
+              if(xhr.response['id'] === 2){
+                window.location.href = "benco.html"
+              }
+              else if(xhr.response['id'] === 1){
+                window.location.href = "m_form.html"
+              }
+              else{
+                window.location.href = "form.html"
+              }
+            }
+          }
+        }
+
+          xhr.open("POST", "http://localhost:5000/employees/login", true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({
+              username: user,
+              password: pass
+          }));
+
+          console.log('done')
+        }
+      </script>
+</body>
+</html>
+

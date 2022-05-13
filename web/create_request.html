@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRMS</title>
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <!---bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!--Google FONT-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section id="title">
+
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand brand" href="./create_request.html">Tuition Reimbursement Management System </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="./home.html">Log out</a>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div id="form">
+
+					<!-- Reimbursement Form -->
+                        <!-- Media middle -->
+                        <div class="media">
+                          <div class="media-left media-middle">
+                            <img src="../img/avatar.png" class="media-object" style="width:60px" alt="avatar">
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading"></h4>
+                            <p style="color: black">Reimbursement Request</p>
+                          </div>
+                        </div>
+						<!-- Date -->
+						<div class="form-group">
+							<label for="date">Date:</label> <input type="text"
+								name="date" class="form-control" id="date"
+                                placeholder="Enter mm/dd/yyyy "
+								required="required">
+						</div>
+                        <!-- Time -->
+						<div class="form-group">
+							<label for="time">Time:</label> <input type="text"
+								name="time" class="form-control" id="time"
+                                placeholder="Enter time"
+								required="required">
+						</div>
+						<!--Location -->
+						<div class="form-group">
+							<label for="location">Location:</label>
+							<input type="text" class="form-control" id="location"
+								name="location"
+								placeholder="Enter Location "
+								required="required">
+						</div>
+
+                        <!-- Description -->
+						<div class="form-group">
+							<label for="description">Course Description:</label>
+							<input type="text" class="form-control" id="description"
+								name="description"
+								placeholder="Enter Course Description "
+								required="required">
+						</div>
+
+
+						<!-- Reimbursement Cost -->
+						<div class="form-group">
+							<label for="cost">Cost:</label> <input
+								type="number" class="form-control" id="cost" name="cost"
+							    placeholder="Enter amount "
+								required="required">
+						</div>
+
+						<!-- Grading format -->
+						<div class="form-group">
+						<label for="gradingFormat">Grading Format:</label> <input type="text"
+						name="gradingFormat" class="form-control" id="gradingFormat"
+						placeholder="Enter Grading Format"
+						required="required">
+						</div>
+
+                        <!-- Event Type -->
+
+						<div class="form-group">
+							<label for="typeOfEvent">Event Type:</label> <select
+								name="typeOfEvent" class="form-control" id="typeOfEvent"
+								required="required">
+								<option value="" selected="selected">Select Type</option>
+								<option value="University Courses">"University Courses"</option>
+								<option value="Seminars">"Seminars"</option>
+								<option value="Certification Preparation Classes">"Certification Preparation Classes"</option>
+								<option value="Certification">"Certification"</option>
+								<option value="Technical Training">"Technical Training"</option>
+							</select>
+						</div>
+
+						<!-- Event work related just -->
+						<div class="form-group">
+							<label for="justification">Justification:</label>
+							<input type="text" class="form-control" id="justification" max="1000"
+								name="justification"
+								placeholder="Enter justification "
+								required="required">
+						</div>
+                            <!-- File uploads -->
+                            <div class="file-upload-button"><input id="file-upload" type="file"/></div>
+							<!-- Submit -->
+                            <div class="button">
+                                <button id="createFormButton" onclick="createForm()" class="btn btn-success btn-block">Submit</button>
+                                <span id="message"></span>
+                            </div>
+					<!-- </form> -->
+		</div>
+    </section>
+    </body>
+
+	<script>
+        function createForm () {
+
+            console.log("Creating Form")
+
+            formDate = document.getElementById("date").value;
+            formTime = document.getElementById("time").value;
+            formLocation = document.getElementById("location").value;
+            formDescription = document.getElementById("description").value;
+            formCost = document.getElementById("cost").value;
+            formGradingFormat = document.getElementById("gradingFormat").value;
+            formTypeOfEvent = document.getElementById("typeOfEvent").value;
+            formJustification = document.getElementById("justification").value;
+            formIsApproved = 1
+            formDeniedReason = "N/A"
+
+            console.log("Date: " + formDate)
+            console.log("Time: " + formTime)
+            console.log("Location: " + formLocation)
+            console.log("Description: " + formDescription)
+            console.log("Cost: " + formCost)
+            console.log("Grading Format: " + formGradingFormat)
+            console.log("Event: " + formTypeOfEvent)
+            console.log("Justification: " + formJustification)
+            console.log("isApproved: " + formIsApproved)
+            console.log("deniedReason: " + formDeniedReason)
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                console.log(this.readyState)
+                if (this.readyState === 4 && this.status === 201) {
+                    console.log(this.responseText)
+
+                    document.getElementById("message").innerHTML = "Form Successfully Added"
+                } else if (this.readyState === 4) {
+                    document.getElementById("message").innerHTML = "Form Failed to Add"
+                }
+            }
+
+            id = document.cookie.split('id=')[1]
+
+            url = "http://localhost:5000/employees/" +id+ "/form"
+
+            //Step 3
+            xhr.open("POST", url, true)
+
+            let form = {
+                date : formDate,
+                time : formTime,
+                location : formLocation,
+                description : formDescription,
+                cost : formCost,
+                gradingFormat : formGradingFormat,
+                typeEvent : formTypeOfEvent,
+                justification : formJustification,
+                isApproved : formIsApproved,
+                deniedReason : formDeniedReason
+            }
+
+            //step 4
+            xhr.setRequestHeader('Content-Type', 'application/json')
+
+            xhr.send(JSON.stringify(form));
+
+
+
+        }
+    </script>
+
+
+</html>

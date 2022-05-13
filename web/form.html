@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+    <!---bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!--Google FONT-->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <section id="Form">
+
+    <!-- Nav Bar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand brand" href="./home.html">Tuition Reimbursement Management System </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./create_request.html">request reimbursement</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./login.html">Log Out</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+<!--_________________________________EMPLOYEE INFO______________________________________________-->
+
+    <div class="container">
+
+       <h1>EMPLOYEE DATA</h1>
+
+
+       <div class="button">
+    </div>
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th>Employee Info</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Employee Id</td>
+                <td id="employeeId">-</td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td id="username">-</td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td id="firstName">-</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td id="lastName">-</td>
+            </tr>            
+            <tr>
+                <td>Email</td>
+                <td id="email">-</td>
+            </tr>
+            <tr>
+                <td>Reimbursement</td>
+                <td id="reimbursement">-</td>
+            </tr>               
+        </table>
+    </div>
+<!--_______________________________________________________________________________-->
+<!--_________________________________FORM VIEW______________________________________________-->
+
+<div class="container" id="forms">
+
+       <h1>FORM INFO</h1>
+     <!-- <div class="button">
+    <button onclick="getForms()"class="btn btn-primary btn-block" >Get Info</button>
+    </div>
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th>Form Info</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Form Id</td>
+                <td id="formId">-</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td id="date">-</td>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td id="time">-</td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td id="location">-</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td id="description">-</td>
+            </tr>
+            <tr>
+                <td>Event</td>
+                <td id="typeEvent">-</td>
+            </tr>
+            <tr>
+                <td>Justification</td>
+                <td id="justification">-</td>
+            </tr>
+            <tr>
+                <td>Approval Status</td>
+                <td id="isApproved">-</td>
+            </tr>
+                <td>Denied Reason</td>
+                <td id="deniedReason">-</td>
+            </tr>
+        </table>
+    </div> -->
+<!--_______________________________________________________________________________-->
+</div>
+
+</body>
+
+<script>
+
+     function getEmployeeInfo() {
+
+        console.log("Getting Form")
+
+        //Step 1
+        let xhttp = new XMLHttpRequest();
+
+        //Step 2
+        xhttp.onreadystatechange = function () {
+
+            console.log(this.readyState)
+
+            if (this.readyState === 4 && this.status === 200) {
+                console.log("Successful Call")
+
+                console.log(this.responseText);
+                let employee = JSON.parse(this.responseText)
+                console.log(employee)
+
+            document.getElementById("employeeId").innerHTML = employee.employeeId
+            document.getElementById("firstName").innerHTML = employee.firstName
+            document.getElementById("lastName").innerHTML = employee.lastName
+            document.getElementById("username").innerHTML = employee.username
+            document.getElementById("email").innerHTML = employee.email
+            document.getElementById("reimbursement").innerHTML = employee.reimbursement
+
+            }
+
+        }
+
+        id = document.cookie.split('id=')[1]
+        url = "http://localhost:5000/employees/" + id
+
+        //Step 3
+        xhttp.open("GET", url, true)
+
+        //step 4
+        xhttp.send()
+
+
+    }
+
+    function createRow(title,value, table, id){
+        let row = document.createElement("tr")
+        let tableData = document.createElement("td")
+        tableData.id = id
+        let tableDataDesc = document.createElement("td")
+        tableDataDesc.innerHTML = title
+        row.appendChild(tableDataDesc)
+        tableData.innerHTML = value
+        table.appendChild(row)
+        row.appendChild(tableData)
+    }
+    function getForms() {
+
+        console.log("Getting Form")
+
+        //Step 1
+        let xhttp = new XMLHttpRequest();
+
+        //Step 2
+        xhttp.onreadystatechange = function () {
+
+            console.log(this.readyState)
+
+            if (this.readyState === 4 && this.status === 200) {
+                console.log("Successful Call")
+
+                console.log(this.responseText);
+                let forms = JSON.parse(this.responseText)
+                console.log(forms)
+
+                for (const form of forms){
+                   let table = document.createElement("table")
+                   table.className = "table table-striped table-bordered table-hover"
+                   let info = document.createElement("th")
+                   info.innerHTML = "Form Info"
+                   let value = document.createElement("th")
+                   value.innerHTML = "Value"
+                   table.appendChild(info)
+                   table.appendChild(value)
+
+                   document.getElementById("forms").appendChild(table)
+
+                   createRow("Employee Id:",form.employeeId, table)
+                   createRow("Form Id:",form.formId, table)
+                   createRow("Date:",form.date, table)
+                   createRow("Time:",form.time, table)
+                   createRow("Location:",form.location, table)
+                   createRow("Description:",form.description, table)
+                   createRow("Cost:",form.cost, table)
+                   createRow("Grade:",form.gradingFormat, table)
+                   createRow("Type of Event:",form.typeEvent, table)
+                   createRow("Justification:",form.justification, table)
+                   createRow("Approval Status:",form.isApproved, table, "approval" + form.employeeId + form.formId)
+                   createRow("Denial reason: ",form.deniedReason, table)
+
+                    if(form.isApproved == 2){
+                        document.getElementById("approval" + form.employeeId + form.formId).innerHTML = "Approved"
+                    }
+                    else{
+                        document.getElementById("approval" + form.employeeId + form.formId).innerHTML = "Rejected"
+                    }
+                 }
+
+            }
+
+        }
+        id = document.cookie.split('id=')[1]
+
+        url = "http://localhost:5000/employees/" + id + "/forms"
+
+        //Step 3
+        xhttp.open("GET", url, true)
+
+        //step 4
+        xhttp.send()
+
+    }
+
+
+window.onload = function(){
+    curUser = getForms();
+    console.log(curUser);
+    empUser = getEmployeeInfo();
+    console.log(empUser);
+}
+
+</script>
+
+
+
+</html>
