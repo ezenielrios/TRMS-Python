@@ -10,7 +10,7 @@ from features.features.pages.create_request import CreateRequestPage
 @given('The User is on the Create Form Page')
 def get_to_create_page(context):
     driver: WebDriver = context.driver
-    driver.get('C:\\Users\Ezeniel\OneDrive\Desktop\TRMSTuition-Reimbursement-Management-System\web\create_request.html')
+    driver.get('C:\\create_request.html')#path to form
 
 
 @when('The User types {date} in the date input')
