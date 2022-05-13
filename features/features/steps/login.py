@@ -8,9 +8,7 @@ from features.features.pages.login import LoginPage
 @given("The User is on the Log In Page")
 def login_page(context):
     driver: WebDriver = context.driver
-    driver.get('C:\\Users\Ezeniel\OneDrive\Desktop\TRMSTuition-Reimbursement-Management-System\web\login.html')
-    # driver.maximize_window()  # For maximizing window
-    # driver.implicitly_wait(1)  # gives an implicit wait for 1 seconds
+    driver.get('C:\\login.html')#path to log in
 
 
 @when('The User types test in the userId field')
@@ -36,6 +34,6 @@ def type_employee_log(context):
 @then('The User should be on the form Page')
 def on_form(context):
     driver: WebDriver = context.driver
-    driver.get('http://localhost:63342/TRMSTuition-Reimbursement-Management-System--master/web/form.html')
+    driver.get('http:/form.html')#path tp form
     sleep(2)
     # assert driver.title == "Form"
