@@ -4,21 +4,21 @@ Tuition Reimbursement Management System (TRMS)
 The Tuition Reimbursement System, TRMS, allows users to submit reimbursements for courses and training. The submitted reimbursement must be approved by that employee's supervisor, department head, and benefits coordinator. The benefits coordinator then reviews the grade received before finalizing the reimbursement.
 
 ## Technologies Used
--Python - version 3.9.4
--Selenium - verson 4.1.5
--Flask - version 2.1.1
--psycopg2 2.9.3
--Behave - version 1.2.6
--pytest 7.1.2
--Flask-Cors 3.0.10
--PyCharm (Pro Edition) - version 2022.1
--pgAdmin4 - version 6.1
--Postman - version 9.19.3
--JavaScript - ES6
--PostgreSQL - version 14.3
--HTML5
--CSS3 
--Bootstrap 4
+- Python - version 3.9.4
+- Selenium - verson 4.1.5
+- Flask - version 2.1.1
+- psycopg2 2.9.3
+- Behave - version 1.2.6
+- pytest 7.1.2
+- Flask-Cors 3.0.10
+- PyCharm (Pro Edition) - version 2022.1
+- pgAdmin4 - version 6.1
+- Postman - version 9.19.3
+- JavaScript - ES6
+- PostgreSQL - version 14.3
+- HTML5
+- CSS3 
+- Bootstrap 4
 
 
 
