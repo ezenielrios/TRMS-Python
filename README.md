@@ -29,8 +29,8 @@ The Tuition Reimbursement System, TRMS, allows users to submit reimbursements fo
 - Leadership roles can accept or deny those requests
 
 ## To-do-list
--Allow management the ability to view all submitted forms or mutliple forms
--Allow management the ability to select which form they wish to view at that moment rather than only displaying one form at a time
+- Allow management the ability to view all submitted forms or mutliple forms
+- Allow management the ability to select which form they wish to view at that moment rather than only displaying one form at a time
 
 ## Getting Started
 1. Make sure you have Python 3 installed on your device
